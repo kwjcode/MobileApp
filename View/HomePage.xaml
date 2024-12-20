@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MobileApp.View.HomePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:MobileApp.ViewModel"
+             Title="HomePage">
+    <ContentPage.BindingContext>
+        <vm:HomePageViewModel />
+    </ContentPage.BindingContext>
+    <Grid ColumnDefinitions="3*,*"
+          RowDefinitions="200,*,Auto,Auto">
+        <toolkit:CameraView x:Name="Camera"
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            SelectedCamera="{Binding Camera}" />
+
+        <Grid Grid.Row="3"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              BackgroundColor="#80CCCCCC">
+
+            <FlexLayout Margin="5"
+                        JustifyContent="SpaceBetween"
+                        Wrap="Wrap">
+
+                <Button Command="{Binding StartCameraPreviewCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}"
+                        Text="StartCameraPreview" />
+
+                <Button Command="{Binding StopCameraPreviewCommand, Source={x:Reference Camera}, x:DataType=toolkit:CameraView}"
+                        Text="StopCameraPreview" />
+
+            </FlexLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>
